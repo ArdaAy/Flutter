@@ -4,13 +4,18 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
 import '../model/item_model.dart';
+import 'repository.dart';
 
 /*
   BLOB -> List tiplerini kapsayan toplu veri
 */
 
-class NewsDbProvider {
+class NewsDbProvider implements Source, Cache {
   Database db;
+
+  NewsDbProvider() {
+    init();
+  }
 
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
@@ -52,6 +57,12 @@ class NewsDbProvider {
   Future<int> addItem(ItemModel item) {
     return db.insert("Items", item.toMapForDb());
   }
+
+  @override
+  Future<List<int>> fetchTopIds() {
+    return null;
+  }
+
   /*
   addItem(ItemModel item) async {
     final result = await db.insert("Items", item.toMapForDb());
@@ -59,4 +70,7 @@ class NewsDbProvider {
     return result;
   }
   */
+
 }
+
+final newsDbProvider = NewsDbProvider();
