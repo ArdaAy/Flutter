@@ -1,3 +1,4 @@
+import 'package:db_test_project_thi/src/widgets/news_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../blocs/stories_provider.dart';
@@ -30,7 +31,7 @@ class NewsList extends StatelessWidget {
           return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (context, int index) {
-                return Text('${snapshot.data[index]}');
+                return NewsListTile(itemId: snapshot.data[index]);
               });
         });
   }
