@@ -6,10 +6,6 @@ import 'dart:async';
 import '../model/item_model.dart';
 import 'repository.dart';
 
-/*
-  BLOB -> List tiplerini kapsayan toplu veri
-*/
-
 class NewsDbProvider implements Source, Cache {
   Database db;
 
@@ -17,30 +13,44 @@ class NewsDbProvider implements Source, Cache {
     init();
   }
 
+  // Todo - store and fetch top ids
+  Future<List<int>> fetchTopIds() {
+    return null;
+  }
+
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, "items.db");
-    db = await openDatabase(path, version: 1,
-        onCreate: (Database newDb, int version) {
-      newDb.execute("""
-        CREATE TABLE  Items
-          (
-            id INTEGER PRIMARY KEY,
-            title TEXT,
-            text TEXT,
-            dead INTEGER,
-            kids BLOB
-          )
-      """);
-    });
+    final path = join(documentsDirectory.path, "items4.db");
+    db = await openDatabase(
+      path,
+      version: 1,
+      onCreate: (Database newDb, int version) {
+        newDb.execute("""
+          CREATE TABLE Items
+            (
+              id INTEGER PRIMARY KEY,
+              type TEXT,
+              by TEXT,
+              time INTEGER,
+              text TEXT,
+              parent INTEGER,
+              kids BLOB,
+              dead INTEGER,
+              deleted INTEGER,
+              url TEXT,
+              score INTEGER,
+              title TEXT,
+              descendants INTEGER
+            )
+        """);
+      },
+    );
   }
 
   Future<ItemModel> fetchItem(int id) async {
     final maps = await db.query(
       "Items",
-      //columns: ["title"],
       columns: null,
-      //where alanı içerisindeki soru işareti whereArgs içerisindeki ile değiştirilir.
       where: "id = ?",
       whereArgs: [id],
     );
@@ -48,29 +58,21 @@ class NewsDbProvider implements Source, Cache {
     if (maps.length > 0) {
       return ItemModel.fromDb(maps.first);
     }
+
     return null;
   }
 
-  // İşi doğrudan bitirip devam etmek istiyoruz
-  // o yüzden async eklemiyoruz, biter bitmez result dönecek
-  // Bahsedilen bölüm aşağıda
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMapForDb());
+    return db.insert(
+      "Items",
+      item.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 
-  @override
-  Future<List<int>> fetchTopIds() {
-    return null;
+  Future<int> clear() {
+    return db.delete("Items");
   }
-
-  /*
-  addItem(ItemModel item) async {
-    final result = await db.insert("Items", item.toMapForDb());
-    print(result);
-    return result;
-  }
-  */
-
 }
 
 final newsDbProvider = NewsDbProvider();
