@@ -7,7 +7,10 @@ void main() {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.deepPurple, Colors.deepOrange],
+              colors: [
+                Colors.deepPurple,
+                Colors.deepOrange,
+              ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -15,7 +18,10 @@ void main() {
           child: const Center(
             child: Text(
               'Hello World!',
-              style: TextStyle(color: Colors.white, fontSize: 28),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 28,
+              ),
             ),
           ),
         ),
