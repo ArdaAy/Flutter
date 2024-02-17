@@ -6,8 +6,11 @@ void main() {
       home: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            gradient:
-                LinearGradient(colors: [Colors.deepPurple, Colors.deepOrange]),
+            gradient: LinearGradient(
+              colors: [Colors.deepPurple, Colors.deepOrange],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
           child: const Center(
             child: Text('Hello World!'),
