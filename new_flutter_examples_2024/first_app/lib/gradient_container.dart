@@ -1,3 +1,4 @@
+import 'package:first_app/styled_text.dart';
 import 'package:flutter/material.dart';
 
 const startAlignment = Alignment.topLeft;
@@ -13,6 +14,8 @@ class GradientContainer extends StatelessWidget {
   const GradientContainer.purpleToOrange({super.key})
       : colors = const [Colors.deepPurple, Colors.deepOrange];
 
+  void rollDice() {}
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,11 +27,18 @@ class GradientContainer extends StatelessWidget {
         ),
       ),
       child: Center(
-        child: Image.asset(
-          'assets/images/dice-2.png',
-          width: 200,
-        ),
-      ),
+          child: Column(
+        children: [
+          Image.asset(
+            'assets/images/dice-2.png',
+            width: 200,
+          ),
+          TextButton(
+            onPressed: rollDice,
+            child: const StyledText("Roll Dice"),
+          ),
+        ],
+      )),
     );
   }
 }
