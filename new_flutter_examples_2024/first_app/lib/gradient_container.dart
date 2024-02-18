@@ -1,4 +1,3 @@
-import 'package:first_app/styled_text.dart';
 import 'package:flutter/material.dart';
 
 const startAlignment = Alignment.topLeft;
@@ -27,18 +26,32 @@ class GradientContainer extends StatelessWidget {
         ),
       ),
       child: Center(
-          child: Column(
-        children: [
-          Image.asset(
-            'assets/images/dice-2.png',
-            width: 200,
-          ),
-          TextButton(
-            onPressed: rollDice,
-            child: const StyledText("Roll Dice"),
-          ),
-        ],
-      )),
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Makes columns center
+          children: [
+            Image.asset(
+              'assets/images/dice-2.png',
+              width: 200,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextButton(
+              onPressed: rollDice,
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(
+                  fontSize: 28,
+                ),
+              ),
+              child: const Text("Roll Dice"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
