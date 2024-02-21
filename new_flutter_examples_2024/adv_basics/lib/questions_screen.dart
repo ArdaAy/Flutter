@@ -11,42 +11,42 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Question'),
-        OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-            //shape: LinearBorder(),
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Question'),
+          const SizedBox(
+            height: 20,
           ),
-          child: const Text('Answer 1'),
-        ),
-        OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-            //shape: LinearBorder(),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Answer 1'),
           ),
-          child: const Text('Answer 2'),
-        ),
-        OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-            //shape: LinearBorder(),
+          const SizedBox(
+            height: 20,
           ),
-          child: const Text('Answer 3'),
-        ),
-        OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.white,
-            //shape: LinearBorder(),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Answer 1'),
           ),
-          child: const Text('Answer 4'),
-        ),
-      ],
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Answer 1'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Answer 1'),
+          ),
+        ],
+      ),
     );
   }
 }
