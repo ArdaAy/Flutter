@@ -35,7 +35,6 @@ class _QuizState extends State<Quiz> {
     selectedAnwers.add(answer);
     if (selectedAnwers.length == questions.length) {
       setState(() {
-        selectedAnwers = [];
         activeScreen = 'results-screen';
       });
     }
