@@ -14,13 +14,15 @@ class QuestionsSummary extends StatelessWidget {
           children: summaryData.map((data) {
             return Row(
               children: [
-                Text(((data['question_index'] as int) + 1).toString()),
+                Text(
+                  ((data['question_index'] as int) + 1).toString(),
+                ),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         data['question'].toString(),
+                        textAlign: TextAlign.left,
                         style: const TextStyle(
                           color: Colors.white,
                         ),
