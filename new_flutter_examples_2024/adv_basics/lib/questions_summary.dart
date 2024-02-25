@@ -17,10 +17,18 @@ class QuestionsSummary extends StatelessWidget {
                 Text(((data['question_index'] as int) + 1).toString()),
                 Expanded(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(data['question'].toString()),
+                      Text(
+                        data['question'].toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                       SizedBox(height: 5),
-                      Text(data['user_answer'].toString()),
+                      Text(
+                        data['user_answer'].toString(),
+                      ),
                       Text(data['correct_answer'].toString()),
                     ],
                   ),
