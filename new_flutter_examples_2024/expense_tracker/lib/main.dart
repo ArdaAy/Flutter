@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor: Color.fromARGB(255, 49, 48, 50),
+  seedColor: const Color.fromARGB(255, 49, 48, 50),
 );
 
 var kDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
-  seedColor: Color.fromARGB(255, 5, 99, 125),
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
 );
 
 void main(List<String> args) {
@@ -21,9 +21,9 @@ void main(List<String> args) {
     runApp(
       MaterialApp(
         darkTheme: ThemeData.dark().copyWith(
-          useMaterial3: true,
+          //useMaterial3: true,
           colorScheme: kDarkColorScheme,
-          cardTheme: CardTheme().copyWith(
+          cardTheme: const CardTheme().copyWith(
             color: kDarkColorScheme.secondaryContainer,
             margin: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -39,11 +39,11 @@ void main(List<String> args) {
         ),
         theme: ThemeData().copyWith(
           colorScheme: kColorScheme,
-          appBarTheme: AppBarTheme().copyWith(
+          appBarTheme: const AppBarTheme().copyWith(
             backgroundColor: kColorScheme.onPrimaryContainer,
             foregroundColor: kColorScheme.primaryContainer,
           ),
-          cardTheme: CardTheme().copyWith(
+          cardTheme: const CardTheme().copyWith(
             color: kColorScheme.secondaryContainer,
             margin: const EdgeInsets.symmetric(
               horizontal: 16,
@@ -63,7 +63,7 @@ void main(List<String> args) {
               ),
         ),
         //themeMode: ThemeMode.system, // default
-        home: Expenses(),
+        home: const Expenses(),
       ),
     );
   });

@@ -49,8 +49,8 @@ class _ExpenseState extends State<Expenses> {
     });
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Expense deleted.'),
-      duration: Duration(seconds: 3),
+      content: const Text('Expense deleted.'),
+      duration: const Duration(seconds: 3),
       action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
@@ -67,7 +67,7 @@ class _ExpenseState extends State<Expenses> {
     print(MediaQuery.of(context).size.width);
     print(MediaQuery.of(context).size.height);
 
-    Widget mainContent = Center(
+    Widget mainContent = const Center(
       child: Text('No expenses found. Start adding some!'),
     );
 
