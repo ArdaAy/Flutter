@@ -4,11 +4,10 @@ import 'package:shopping_list/models/grocery_item.dart';
 
 final groceryItems = [
   GroceryItem(
-    id: 'a',
-    name: 'Milk',
-    quantity: 1,
-    category: categories[123]!,
-  ),
+      id: 'a',
+      name: 'Milk',
+      quantity: 1,
+      category: categories[Categories.dairy]!),
   GroceryItem(
       id: 'b',
       name: 'Bananas',
