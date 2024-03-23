@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -24,7 +26,23 @@ class _NewItemState extends State<NewItem> {
   void _saveItem() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      //http
+      final url = Uri.https(
+          'flutter-shopping-list-eea77-default-rtdb.europe-west1.firebasedatabase.app',
+          'shopping-list.json');
+      http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(
+          {
+            'name': _enteredName,
+            'quantity': _enteredQuantity,
+            'category': _selectedCategory.name,
+          },
+        ),
+      );
+      /*
       Navigator.of(context).pop(
         GroceryItem(
           id: DateTime.now().toString(),
@@ -33,6 +51,7 @@ class _NewItemState extends State<NewItem> {
           category: _selectedCategory,
         ),
       );
+      */
     }
   }
 
