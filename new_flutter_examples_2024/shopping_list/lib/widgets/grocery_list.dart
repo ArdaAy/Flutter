@@ -74,10 +74,23 @@ class _GroceryListState extends State<GroceryList> {
     });
   }
 
-  void _removeItem(GroceryItem item) {
+  void _removeItem(GroceryItem item) async {
+    final index = _groceryList.indexOf(item);
     setState(() {
       _groceryList.remove(item);
     });
+
+    final url = Uri.https(
+        'flutter-shopping-list-eea77-default-rtdb.europe-west1.firebasedatabase.app',
+        'shopping-list/${item.id}.json');
+    final response = await http.delete(url);
+
+    if (response.statusCode >= 400) {
+      // Optional: Show error message
+      setState(() {
+        _groceryList.insert(index, item);
+      });
+    }
   }
 
   @override
