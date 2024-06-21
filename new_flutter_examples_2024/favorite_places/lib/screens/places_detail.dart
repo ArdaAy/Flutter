@@ -1,10 +1,10 @@
-import 'package:favorite_places/models/place_item.dart';
+import 'package:favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
 
-class PlaceDetailScreen extends StatelessWidget {
-  final PlaceItem placeItem;
+class PlacesDetail extends StatelessWidget {
+  final Place placeItem;
 
-  PlaceDetailScreen({required this.placeItem});
+  PlacesDetail({required this.placeItem});
 
   @override
   Widget build(BuildContext context) {

@@ -1,23 +1,23 @@
-import 'package:favorite_places/models/place_item.dart';
+import 'package:favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
 
-class NewPlace extends StatefulWidget {
-  final void Function(PlaceItem placeItem) addNewPlace;
+class AddPlace extends StatefulWidget {
+  final void Function(Place placeItem) addNewPlace;
 
-  const NewPlace({super.key, required this.addNewPlace});
+  const AddPlace({super.key, required this.addNewPlace});
 
   @override
-  State<NewPlace> createState() {
-    return _NewPlaceState();
+  State<AddPlace> createState() {
+    return _AddPlaceState();
   }
 }
 
-class _NewPlaceState extends State<NewPlace> {
+class _AddPlaceState extends State<AddPlace> {
   final _formKey = GlobalKey<FormState>();
   String _title = "";
 
   void _savePlace() {
-    widget.addNewPlace(PlaceItem(title: _title));
+    widget.addNewPlace(Place(title: _title));
     Navigator.pop(context);
   }
 
