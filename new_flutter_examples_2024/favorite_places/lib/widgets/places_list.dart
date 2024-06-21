@@ -1,5 +1,6 @@
 import 'package:favorite_places/models/place_item.dart';
 import 'package:favorite_places/widgets/new_place.dart';
+import 'package:favorite_places/widgets/place_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -45,7 +46,21 @@ class _PlacesListState extends State<PlacesList> {
         padding: const EdgeInsets.all(8),
         itemCount: _placesList.length,
         itemBuilder: (context, index) {
-          return Text(_placesList[index].title);
+          return TextButton(
+              style: ButtonStyle(alignment: Alignment.centerLeft),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        PlaceDetailScreen(placeItem: _placesList[index]),
+                  ),
+                );
+              },
+              child: Text(
+                _placesList[index].title,
+                textAlign: TextAlign.left,
+              )); //
         },
       ),
     );
