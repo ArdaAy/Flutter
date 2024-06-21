@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class SummaryItem extends StatelessWidget {
   final Map<String, Object> itemData;
-  SummaryItem(this.itemData, {super.key});
+  const SummaryItem(this.itemData, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SummaryItem extends StatelessWidget {
           isCorrectAnswer: isCorrectAnswer,
           questionIndex: itemData['question_index'] as int,
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         Expanded(
@@ -32,7 +32,7 @@ class SummaryItem extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   )),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Text(
                 itemData['user_answer'].toString(),
                 style: const TextStyle(

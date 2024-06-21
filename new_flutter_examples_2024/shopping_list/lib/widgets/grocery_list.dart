@@ -69,6 +69,7 @@ class _GroceryListState extends State<GroceryList> {
     setState(() {
       _groceryList.add(newItem);
     });
+
   }
 
   void _removeItem(GroceryItem item) async {
