@@ -1,18 +1,19 @@
-import 'package:favorite_places/models/place.dart';
+import 'package:favorite_places/providers/user_places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddPlaceScreen extends StatefulWidget {
-  final void Function(Place placeItem) addNewPlace;
+class AddPlaceScreen extends ConsumerStatefulWidget {
+  //final void Function(Place placeItem) addNewPlace;
 
-  const AddPlaceScreen({super.key, required this.addNewPlace});
+  const AddPlaceScreen({super.key});
 
   @override
-  State<AddPlaceScreen> createState() {
+  ConsumerState<AddPlaceScreen> createState() {
     return _AddPlaceScreenState();
   }
 }
 
-class _AddPlaceScreenState extends State<AddPlaceScreen> {
+class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
   final _titleController = TextEditingController();
 
   @override
@@ -21,12 +22,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     super.dispose();
   }
 
-  final _formKey = GlobalKey<FormState>();
-  String _title = "";
-
   void _savePlace() {
-    widget.addNewPlace(Place(title: _title));
-    Navigator.pop(context);
+    final enteredTitle = _titleController.text;
+    if (enteredTitle.isEmpty) {
+      return;
+    }
+    ref.read(userPlacesProvider.notifier).addPlace(enteredTitle);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -49,41 +51,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               height: 16,
             ),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: _savePlace,
               icon: Icon(Icons.add),
               label: const Text('Add Title'),
             ),
           ],
         ),
       ),
-
-      /*Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(labelText: "Title"),
-              onSaved: (newValue) {
-                if (newValue != null) {
-                  _title = newValue;
-                }
-              },
-              onChanged: (value) {
-                setState(() {
-                  _title = value;
-                });
-              },
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                _savePlace();
-              },
-              label: const Text("Add Place"),
-              icon: Icon(Icons.add),
-            )
-          ],
-        ),
-      ),*/
     );
   }
 }
