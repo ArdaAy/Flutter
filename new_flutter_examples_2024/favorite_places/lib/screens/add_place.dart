@@ -1,18 +1,26 @@
 import 'package:favorite_places/models/place.dart';
 import 'package:flutter/material.dart';
 
-class AddPlace extends StatefulWidget {
+class AddPlaceScreen extends StatefulWidget {
   final void Function(Place placeItem) addNewPlace;
 
-  const AddPlace({super.key, required this.addNewPlace});
+  const AddPlaceScreen({super.key, required this.addNewPlace});
 
   @override
-  State<AddPlace> createState() {
-    return _AddPlaceState();
+  State<AddPlaceScreen> createState() {
+    return _AddPlaceScreenState();
   }
 }
 
-class _AddPlaceState extends State<AddPlace> {
+class _AddPlaceScreenState extends State<AddPlaceScreen> {
+  final _titleController = TextEditingController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    super.dispose();
+  }
+
   final _formKey = GlobalKey<FormState>();
   String _title = "";
 
@@ -24,10 +32,32 @@ class _AddPlaceState extends State<AddPlace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Add New Place"),
-      ),
-      body: Form(
+        appBar: AppBar(
+          title: const Text("Add New Place"),
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            children: [
+              TextField(
+                decoration: const InputDecoration(labelText: 'Title'),
+                controller: _titleController,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.add),
+                label: const Text('Add Title'),
+              ),
+            ],
+          ),
+        )
+
+        /*Form(
         key: _formKey,
         child: Column(
           children: [
@@ -53,7 +83,7 @@ class _AddPlaceState extends State<AddPlace> {
             )
           ],
         ),
-      ),
-    );
+      ),*/
+        );
   }
 }

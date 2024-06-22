@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class PlacesScreen extends StatefulWidget {
+  PlacesScreen({super.key});
   @override
   State<PlacesScreen> createState() {
     return _PlacesState();
@@ -35,7 +36,7 @@ class _PlacesState extends State<PlacesScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddPlace(
+                      builder: (context) => AddPlaceScreen(
                         addNewPlace: _addNewPlace,
                       ),
                     ));
