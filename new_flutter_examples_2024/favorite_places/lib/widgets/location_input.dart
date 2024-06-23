@@ -72,15 +72,14 @@ class _LocationInputState extends State<LocationInput> {
 
     setState(() {
       _pickedLocation = PlaceLocation(
-        latitude: lat!,
-        longitude: lng!,
+        latitude: lat,
+        longitude: lng,
         address: address,
       );
       _isGettingLocation = false;
     });
 
-    print(_locationData.latitude);
-    print(_locationData.longitude);
+    widget.onSelectLocation(_pickedLocation!);
   }
 
   @override
